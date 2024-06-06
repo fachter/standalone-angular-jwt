@@ -9,6 +9,7 @@ import {Button} from "primeng/button";
 import {UserInterface} from "../../models/user.interface";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
+import {LoginService} from "../../services/login.service";
 
 @Component({
   selector: 'dummy-register',
@@ -26,8 +27,7 @@ import {Router} from "@angular/router";
 export class RegisterComponent {
   formBuilder = inject(FormBuilder);
   http = inject(HttpClient)
-  authService = inject(AuthService)
-  router = inject(Router)
+  loginService = inject(LoginService)
 
   form = this.formBuilder.nonNullable.group({
     username: ["", Validators.required],
@@ -40,10 +40,7 @@ export class RegisterComponent {
     this.http.post<{ user: UserInterface }>(environment.apiUrl + "/users", {
       user: this.form.getRawValue()
     }).subscribe((res) => {
-      console.log(res)
-      localStorage.setItem("token", res.user.token)
-      this.authService.currentUser.set(res.user);
-      this.router.navigateByUrl("/").then();
+      this.loginService.login(res.user);
     })
   }
 

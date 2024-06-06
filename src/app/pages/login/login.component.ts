@@ -8,6 +8,7 @@ import {environment} from "../../../environments/environment";
 import {FloatLabelModule} from "primeng/floatlabel";
 import {Button} from "primeng/button";
 import {InputTextModule} from "primeng/inputtext";
+import {LoginService} from "../../services/login.service";
 
 @Component({
   selector: 'dummy-login',
@@ -24,8 +25,7 @@ import {InputTextModule} from "primeng/inputtext";
 export class LoginComponent {
   formBuilder = inject(FormBuilder);
   http = inject(HttpClient)
-  authService = inject(AuthService)
-  router = inject(Router)
+  loginService = inject(LoginService)
 
   form = this.formBuilder.nonNullable.group({
     email: ["", Validators.required],
@@ -37,10 +37,7 @@ export class LoginComponent {
     this.http.post<{ user: UserInterface }>(environment.apiUrl + "/users/login", {
       user: this.form.getRawValue()
     }).subscribe((res) => {
-      console.log(res)
-      localStorage.setItem("token", res.user.token)
-      this.authService.currentUser.set(res.user);
-      this.router.navigateByUrl("/").then();
+      this.loginService.login(res.user);
     })
   }
 }

@@ -1,1 +1,18 @@
-<p>login works!</p>
+<h1>Login</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="mt-5">
+    <p-floatLabel>
+      <input id="email" pInputText type="email" formControlName="email"/>
+      <label for="email">Email</label>
+    </p-floatLabel>
+  </div>
+  <div class="mt-5">
+    <p-floatLabel>
+      <input id="password" pInputText type="password" formControlName="password"/>
+      <label for="password">Password</label>
+    </p-floatLabel>
+  </div>
+  <div class="mt-5">
+    <p-button label="Submit" type="submit"></p-button>
+  </div>
+</form>

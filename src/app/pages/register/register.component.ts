@@ -7,8 +7,6 @@ import {InputTextModule} from "primeng/inputtext";
 import {FloatLabelModule} from "primeng/floatlabel";
 import {Button} from "primeng/button";
 import {UserInterface} from "../../models/user.interface";
-import {AuthService} from "../../services/auth.service";
-import {Router} from "@angular/router";
 import {LoginService} from "../../services/login.service";
 
 @Component({

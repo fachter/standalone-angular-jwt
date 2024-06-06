@@ -1,7 +1,6 @@
-import {Component, DoCheck, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {MenubarModule} from "primeng/menubar";
-import {MenuItem} from "primeng/api";
 import {Button} from "primeng/button";
 import {AuthService} from "./services/auth.service";
 import {MenuService} from "./services/menu.service";

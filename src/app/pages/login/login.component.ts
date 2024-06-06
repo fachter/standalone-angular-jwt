@@ -1,8 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
-import {AuthService} from "../../services/auth.service";
-import {Router} from "@angular/router";
 import {UserInterface} from "../../models/user.interface";
 import {environment} from "../../../environments/environment";
 import {FloatLabelModule} from "primeng/floatlabel";

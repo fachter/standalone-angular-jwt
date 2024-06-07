@@ -28,10 +28,21 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("Check called")
+    this.initialLogin();
     this.menuService.setMenu()
-    this.http.get<{user: UserInterface}>(environment.apiUrl + "/user")
-      .subscribe((response) => {
-        this.loginService.login(response.user)
+  }
+
+  private initialLogin() {
+    if (!localStorage.getItem("token"))
+      return;
+    this.http.get<{ user: UserInterface }>(environment.apiUrl + "/user")
+      .subscribe({
+        next: (response) => {
+          this.loginService.login(response.user);
+        },
+        error: () => {
+          this.logoutService.logout();
+        }
       })
   }
 

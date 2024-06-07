@@ -11,6 +11,7 @@ export class LogoutService {
 
   logout() {
     this.authService.currentUser.set(null);
+    localStorage.removeItem("token")
     this.menuService.setMenu();
   }
 }
